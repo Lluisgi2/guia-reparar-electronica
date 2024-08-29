@@ -536,7 +536,7 @@ c) Medida de la tensión}\\
 Aparte de las señales electrónicas más complejas (cuadrada, triangular, modulada....), en las que no entraré en esta guía, hay dos formas de tensión que debes conocer: la tensión continua y la tensión alterna "sinusoidal" de la red eléctrica doméstica.
 
 \begin{itemize}
-\item La tensión contínua
+\item \textbf{La tensión contínua}
 
 \begin{normalize}
 Una tensión continua es una tensión estable en el tiempo y que tiene una forma lineal
@@ -548,5 +548,77 @@ A continuación, simplemente coloque cada una de las puntas de su multímetro so
 Si las patillas de su multímetro están invertidas, mostrará un "-" delante del
 del valor.
 \end{normalize}
+
+\newpage
+
+
+\item \textbf{La tensión alterna sinusoidal}
+En contra a una tensión contínua, la tensión alterna tiene una evolución cíclica respecto al tiempo.
+
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{tension-alterna-sinusoidal} 
+\centering
+\caption*{\textit{Forma de la tensión de la red eléctrica europea}}
+\end{figure}
+Tomemos el ejemplo de nuestra red eléctrica, es una tensión sinusoidal de 230V, así que coloque su multímetro en "tensión alterna" (AC o V$\approx$), sobre el primer valor más alto que 230V
+A continuación, basta con colocar cada una de las puntas del multímetro en uno de los dos contactos a medir, un enchufe por ejemplo. Si inviertes el + y el - en tu multímetro, no habrá ninguna diferencia. No hay "dirección" en una corriente alterna ya que cambia de dirección regularmente, lo que medimos es lo que llamamos su "valor eficaz".
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+Definición: El valor eficaz de la tensión (llamada "rms"), es el valor de una tensión contínua que tendría los mismos efectos sobre una resistencia eléctrica.
+    }%
+}\\
+
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+Esta señal se llama "alterna", porque cambia de signo/sentido, tiene un período (T) que determina la duración del patrón elemental que se reproduce al infinito. Este período (T) se mide en segundos, en la red eléctrica es de 0.02 segundos (s) o 20 milisegundos (ms).\\
+Más a menudo hablamos de la frecuencia de una señal (Hercios), que está directamente ligado a el periodo, ya que equivale a su inversa: $ f = \frac{1}{T}, sea \frac{1}{0.02} = 50 Hz$ para nuestro ejemplo. La señal del tendido eléctrico Español es pues 50 Hz, es decir, se repite a una velocidad de 50 veces por segundo.
+    }%
+}\\
 \end{itemize}
+\newpage
+
+\textbf{
+d) Montaje en serie y en paralelo}\\
+
+Ya sea en corriente continua o alterna, a veces oirás hablar de conexión en serie o en paralelo, son las distintas formas de conectar componentes eléctricos entre sí según sea necesario.
+\begin{itemize}
+\item En serie
+
+\noindent\begin{minipage}[t]{0.5\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{circuito-serie}
+\end{minipage}% Don't leave empty lines and empty chars between minipages
+\hfill%
+\begin{minipage}[t]{0.45\textwidth}\vspace{0pt}
+Montaje en serie significa que el
+de tal manera que la misma corriente
+la misma corriente pase a través de ellos
+ uno tras otro.
+La corriente es la misma en todo el
+circuito, mientras que la tensión en
+terminales de la batería es igual a la suma
+de las tensiones en los bornes de cada
+lámpara.
+\end{minipage}
+
+\item En paralelo (o en derivación)
+
+\noindent\begin{minipage}[t]{0.5\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{circuito-paralelo}
+\end{minipage}% Don't leave empty lines and empty chars between minipages
+\hfill%
+\begin{minipage}[t]{0.45\textwidth}\vspace{0pt}
+La conexión en paralelo significa que
+los dos polos de cada elemento están conectados entre sí.
+La corriente suministrada por la batería se
+dividida en dos partes para cada una de las lámparas.
+Sin embargo, la tensión en los bornes de cada lámpara es la misma que la de la batería.
+\end{minipage}
+\end{itemize}
+Es importante entender la diferencia entre estas dos asociaciones de elementos (o componentes electrónicos) porque no se comprobarán estos elementos de la misma manera en ambos casos.
+Por ejemplo, en conexión en paralelo, si mide un cortocircuito en los terminales de L1, quizás sea L2 y no L1 el que tenga la culpa. Deberá desconectar una de estas lámparas para comprobarlo.
+
+
+
 \end{document}
