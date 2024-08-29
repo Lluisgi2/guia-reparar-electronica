@@ -8,7 +8,11 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{lipsum}
+\usepackage{kantlipsum}
+\usepackage{enumitem}
 \graphicspath{ {./images/} }
+
+\newenvironment{normalize}{\leftskip-\leftmargin}{\par}
 
 \begin{document}
 
@@ -213,13 +217,13 @@ Es más, algunos modelos recientes de modelos de impresora-escáner: no podrás 
     \centering
     \begin{minipage}[b]{0.4\textwidth}
         \centering
-        \includegraphics[width=1cm]{braum-mixer} % Reemplaza con tu imagen
+        \includegraphics[width=1cm]{braum-mixer} 
         \caption*{Ganador del concurso de batidoras indesmontables... Braum y Kenwood!}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.4\textwidth}
         \centering
-        \includegraphics[width=2cm]{Dyson} % Reemplaza con tu imagen
+        \includegraphics[width=2cm]{Dyson} 
         \caption*{¿Es para aspirar polvo intergaláctico?}
     \end{minipage}
 \end{figure}
@@ -237,7 +241,7 @@ Así podrás medir y probar muchos de los componentes de tus
 en tus electrodomésticos.
 
 \begin{figure}[h]
-\includegraphics[width=0.8\textwidth]{analogia-agua-elec} % Reemplaza con tu imagen
+\includegraphics[width=0.8\textwidth]{analogia-agua-elec} 
 \caption*{Analogía entre la electricidad y el agua}
 \end{figure}
 
@@ -277,7 +281,7 @@ La relación entre estos tres valores es $U(V) = R(\Omega) \times I(A)$, lo que 
 Para medir estos tres valores eléctricos, necesitamos una herramienta especial llamada "multímetro". (véase el capítulo 2.4).
 
 \begin{figure}[h]
-\includegraphics[width=0.7\textwidth]{circuito-abierto-cerrado} % Reemplaza con tu imagen
+\includegraphics[width=0.7\textwidth]{circuito-abierto-cerrado} 
 \centering
 \caption*{Circuito abierto o cerrado (cambiar por otra figura)}
 \end{figure}
@@ -288,10 +292,175 @@ Para medir estos tres valores eléctricos, necesitamos una herramienta especial 
 \end{enumerate}
 La analogía con el agua no funciona aquí: un circuito cerrado significa que la electricidad puede circular.
 posible circulación de electricidad, mientras que un grifo cerrado significa que no hay
-circulación de agua...La analogía con el agua no funciona aquí: un circuito cerrado significa que la electricidad puede circular.
-posible circulación de electricidad, mientras que un grifo cerrado significa que no hay
 circulación de agua...
 
-% Additional chapters...
+\section{Los dispositivos de seguridad eléctrica}
+
+\begin{large}
+\textbf{a) Hilos y colores}\\
+\end{large}
+En primer lugar, para orientarse más fácilmente, hay que saber a qué corresponden los
+corresponden en electricidad,
+Pero como estos colores no siempre se respetan, veremos más adelante cómo estar seguros.
+\begin{enumerate}
+\item Para una tensión contínua:
+\begin{itemize}
+\item El hilo negro será el \textbf{-} (O a menudo el conector exterior en cables blindados)
+\item El hilo rojo será el \textbf{+} (O a menudo el hilo conductor interior en cables blindados)
+\end{itemize}
+
+
+\begin{normalize}
+Un cable "blindado" es un cable que está envuelto en un blindaje metálico conectado a la masa del aparato, para evitar interferencias electromagnéticas.
+\end{normalize}
+
+\item En lo que incumbe a instalaciones eléctricas: no se deje engañar por la posición del neutro y lugar del neutro y la fase en una toma eléctrica, esta norma no siempre se
+esta norma no siempre se respeta, ya que si invierte el neutro y la fase, también
+también funcionará.
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{enchufe-macho} 
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{enchufe-hembra} 
+    \end{minipage}
+\end{figure}
+
+\begin{itemize}
+\item La fase (llegada de la corriente): todos los colores excepto azul y verde/amarillo. Puede estar directamente conectada al tablero de fusibles, o conecetada a un interruptor, por ejemplo
+\item El neutro (escape de la corriente): azul
+\item La tierra: verde y amarillo
+\end{itemize}
+
+\end{enumerate}
+
+\newpage
+\textbf{b) ¿De qué sirve la tierra y el disyunctor diferencial?}\\
+Es importante comprender la finalidad de estos dos elementos, que han sido
+creados para reducir el riesgo de electrocución de las personas en caso de avería de un aparato, como una fuga de agua en una lavadora, por ejemplo (el agua es un buen conductor de la electricidad)
+
+\begin{figure}[h]
+\includegraphics[width=0.7\textwidth]{diferencial-protección-tierra} 
+\centering
+\caption*{\textit{Los diferentes grados de protección de una instalación eléctrica}}
+\end{figure}
+
+Imagine un contacto eléctrico entre un cable conectado a un potencial eléctrico peligroso
+(como la red de 230 V) y la carcasa metálica de su frigorífico.
+de su frigorífico.
+
+\begin{itemize}
+\item Caso de la primera imagen: sin tierra ni disyunctor diferencial.
+Si un apersona toca el frigorífico, la corriente pasará por el cuerpo de ésta para retornar a la tierra (ya que la corriente de la red está referenciada a tierra y siempre busca volver a ella, un poco como si se sintiese atraída por ella).
+
+\textbf{$\Rightarrow$ La persona se electrocuta}
+
+\item Caso de la segunda imagen: el cable de tierra está presente, es decir
+todas las partes metálicas de los aparatos eléctricos están conectadas eléctricamente a tierra, pero sigue sin haber interruptor diferencial.
+Esta vez, si alguien toca el frigorífico, la corriente fluirá a través del cable de tierra Y a través del cuerpo de la persona.
+
+\textbf{$\Rightarrow$ La persona se da un calambre}
+\newpage
+
+\begin{normalize}
+La corriente será mucho menor en el cuerpo de la persona que en el cable de tierra, porque la resistencia eléctrica entre la mano y los pies de una persona es mucho mayor que la de un cable de cobre. Cuanto menor sea esta resistencia (dedos y pies mojados, sobre un suelo húmedo, etc.), mayor será la fuga a tierra. Más fuerte y, por tanto, más peligrosa será la corriente.
+\end{normalize}
+
+\item Último caso: incluso antes de que alguien toque el aparato averiado, el disyuntor diferencial detectará la fuga de corriente y cortará la corriente a toda la instalación eléctrica. Se trata de la famosa palanca o botón grande que suele colocarse junto al contador de la luz.
+
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth]{disyunctores} 
+\centering
+\end{figure}
+
+El interruptor diferencial mide la corriente que entra en la vivienda a través de la fase y la corriente que sale de la vivienda a través del conductor neutro.
+Si la diferencia supera los 500 mA (650 mA en los modelos más antiguos), se dispara.
+En ese caso, suele significar que un aparato conectado (no necesariamente en funcionamiento) está averiado.
+Los interruptores diferenciales no deben confundirse con los interruptores divisionales.
+disyuntores, que ahora sustituyen a los antiguos fusibles.\\
+
+La función de un disyuntor divisor es cortar la electricidad a una parte de la instalación cuando se produce una sobreintensidad en dicha parte, es decir, cuando se produce un sobreconsumo anormal de corriente.
+Generalmente, se disparan a los 16A para los enchufes convencionales, a los 10A
+para el alumbrado (también los hay de 20A o 32A para alimentar determinados aparatos de alto consumo: cocina eléctrica, termo...).
+
+La causa de esta sobreintensidad puede ser un aparato defectuoso, pero también puede ser el consumo normal de varios aparatos conectados al mismo circuito.
+ser el consumo normal de varios aparatos conectados al mismo circuito de
+circuito (no necesariamente el mismo enchufe).
+
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+Ejemplo: un termo eléctrico con una potencia P de 2300W, consumirá una corriente de 10A ($P = U \times I \rightarrow I = P/U = 2300W / 230V = 10A$)
+Si enchufais uno o más aparatos sobre el mismo circuito, cuyo consumo sobrepase 6A, el disyunctor divisionario o el fusible de 16A cortará el circuito: $10+6=16A$
+    }%
+}\\
+
+En las instalaciones recientes, se montan en el mismo módulo un disyuntor y un interruptor diferencial para cada parte de la instalación. Estos disyuntores diferenciales suelen dispararse a 30mA y por una buena razón:
+
+\begin{figure}[h]
+\includegraphics[width=0.9\textwidth]{corriente-efectos} 
+\centering
+\end{figure}
+
+\textbf{b) ¿Cómo verificar una buena conexión a tierra?}\\
+El disyunctor diferencial, está presente hoy en día en la mayor parte de instalaciones eléctricas de España, mientras que la toma de tierra está desgraciadamente ausente en muchas (la presencia de contactos de tierra en el enchufe no implica que esté conectada) Hay que coger el hábito de verificar si la tierra está bien conectada a los enchufes que vamos a usar para nuestros aparatos (sobre todo si hay facilidad de contacto con partes metálicas) Para ello, utilizaremos el multímetro (ver capítulo 2.4) en modo voltímetro en un rango de alterna superior a 240V.
+\begin{itemize}
+\item Entre el neutro y la fase deberíamos obtener 230V
+\item Entre la fase y la tierra igualmente 230V (si no: tierra mal conectada)
+\item Entre el neutro y la tierra, no más de 5V (si no: tierra mal conectada)
+\end{itemize}
+\newpage
+
+Estas mediciones también permiten determinar la ubicación de la fase y el neutro, que no siempre están colocados como se muestra en el diagrama siguiente:
+
+\begin{figure}[h]
+\includegraphics[width=0.4\textwidth]{diagrama-enchufe} 
+\centering
+\end{figure}
+\section{Los peligros eléctricos que podeis encontrar durante las reparaciones}
+Si no sabes lo que haces, la electricidad puede ser peligrosa e incluso mortal.
+Al solucionar problemas, intentamos evitar trabajar bajo tensión en la medida de lo posible, pero el peligro no siempre se elimina. Me refiero a la tensión de red, los 230V AC. Sin embargo, un dispositivo alimentado por una batería también puede ser peligroso.\\
+
+\textbf{a) Aparato bajo tensión}\\
+
+Como norma general, conecte un aparato a la red sólo para una prueba o medición rápida y desconéctelo inmediatamente después.
+
+\begin{itemize}
+\item En caso de medir con el aparato bajo tensión, hay que poner especial atención a no poner los dedos, o cualquier parte del cuerpo en contacto con el aparato, las manos deben de estar sobre las dos puntas del multímetro y lo más alejadas posible de la parte bajo tensión.
+\item No se debe tener ningún recipiente con agua u otro líquido a proximidad del aparato y la mesa de trabajo debe estar despejada y limpia.
+\item Intentad estar lo más aislado posible del suelo, con buenos zapatos de goma e idealmente una tabla de madera debajo.
+\end{itemize}
+\newpage
+
+\textbf{b) Aparato sin tensión o alimentado por una pila/batería}\\
+Aunque el aparato esté desenchufado, debe tener especial cuidado con
+un componente electrónico fácilmente reconocible: el condensador.
+\begin{figure}[h]
+\includegraphics[width=0.7\textwidth]{condensadores} 
+\centering
+\end{figure}
+
+Estos pequeños cilindros son capaces de almacenar alta tensión, lo que puede ser
+peligroso.
+Encontrará el modelo de la izquierda soldado a las tarjetas de alimentación de la mayoría de los aparatos más recientes conectados a la red que necesitan tensiones continuas. Pero también lo encontrarás en las cámaras digitales para dar al flash la potencia que necesita. El condensador de la derecha se encuentra en electrodomésticos como las lavadoras. También encontrará un condensador capaz de almacenar una tensión de unos 4000V en los hornos microondas: ¡una alta tensión muy peligrosa!
+En ambos casos, la única forma de saber si debe desconfiar es
+comprobar la tensión máxima admisible impresa en el componente.
+Si supera los 50 V, deberá tomar las precauciones indicadas en el apartado
+sección sobre condensadores (véase el capítulo 5.4.2).\\
+
+En resumen, recuerde que los dispositivos potencialmente peligrosos, aunque estén apagados, son :
+\begin{itemize}
+\item Todos los aparatos alimentados por la red eléctrica equipados con una fuente de alimentación conmutada (véase el cap. 5.3.a)
+\item Cámaras digitales
+\item Hornos microondas
+\item Tubos de rayos catódicos de pantallas y televisores antiguos
+\end{itemize}
+
 
 \end{document}
