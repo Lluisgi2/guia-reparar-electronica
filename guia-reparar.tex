@@ -1,7 +1,8 @@
 \documentclass[a5paper,twoside,openany]{book}
 \usepackage[body={12cm,18cm}]{geometry}
 \usepackage[a5,center,off]{crop}
-\usepackage{titlesec}  % For customizing title formats
+\usepackage{titlesec}
+\usepackage{amssymb,graphicx}
 \usepackage{enumitem}
 \usepackage{caption}
 \pagestyle{plain}
@@ -10,9 +11,18 @@
 \usepackage{lipsum}
 \usepackage{kantlipsum}
 \usepackage{enumitem}
+
 \graphicspath{ {./images/} }
 
+
+\newcommand\vcent[1]{\vcenter{\hbox{#1}}}
 \newenvironment{normalize}{\leftskip-\leftmargin}{\par}
+\newcommand\loudspeaker[1][3]{\ensuremath{\vcent{\rule{.6ex}{.6ex}}\kern-.5ex%
+  \vcent{\scalebox{.6}[1]{\rotatebox[origin=center]{90}{$\blacktriangle$}}}%
+  \ifnum#1>0\relax\kern.1ex\vcent{\scalebox{.3}{)}}\ifnum#1>1\relax\kern-.15ex%
+  \vcent{\scalebox{.4}{)}}\ifnum#1>2\relax\kern-.23ex\vcent{\scalebox{.5}{)}}%
+  \fi\fi\fi}%
+}
 
 \begin{document}
 
@@ -423,6 +433,7 @@ Estas mediciones también permiten determinar la ubicación de la fase y el neut
 \includegraphics[width=0.4\textwidth]{diagrama-enchufe} 
 \centering
 \end{figure}
+
 \section{Los peligros eléctricos que podeis encontrar durante las reparaciones}
 Si no sabes lo que haces, la electricidad puede ser peligrosa e incluso mortal.
 Al solucionar problemas, intentamos evitar trabajar bajo tensión en la medida de lo posible, pero el peligro no siempre se elimina. Me refiero a la tensión de red, los 230V AC. Sin embargo, un dispositivo alimentado por una batería también puede ser peligroso.\\
@@ -461,6 +472,81 @@ En resumen, recuerde que los dispositivos potencialmente peligrosos, aunque est�
 \item Hornos microondas
 \item Tubos de rayos catódicos de pantallas y televisores antiguos
 \end{itemize}
+\newpage
 
+\section{Utilización de un multímetro}
+El multímetro es una herramienta electrónica esencial para medir
+determinados valores eléctricos. La mayoría de los multímetros actúan como
+voltímetro, amperímetro y óhmetro, es decir, miden tensiones
+y resistencias, lo que suele bastar para la localización de averías.
+resolución de problemas. La mayoría de las veces, lo único que necesitamos es medir tensiones y resistencias. Los multímetros se pueden adquirir por unos diez euros o más y son suficientes para la localización de averías.
 
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{multimetro-digital} 
+\centering
+\caption*{\textit{Multímetro digital básico}}
+\end{figure}
+\textbf{a) ¿Cómo se utiliza?}\\
+
+En primer lugar, con su multímetro, tendrá dos cables, uno rojo y uno negro. En un lado de estos cables, habrá una clavija "banana" que se conecta al multímetro, y en el otro lado, un "punto de contacto" para realizar las mediciones.
+El negro se conecta siempre a la clavija "COM" (marcada con un 3 en la imagen) de su multímetro, el rojo puede enchufarse en diferentes puntos dependiendo de lo que quieras medir.
+Ten en cuenta que por debajo de unos 50V (en un ambiente seco), no estás arriesgando mucho.
+Puedes poner los dedos en los dos polos de una batería tanto como quieras. Sin embargo, ten mucho cuidado cuando estés midiendo tensiones más altas, como la de la red eléctrica, por ejemplo.
+
+\newpage
+
+\textbf{b) Medida de continuidad, de aislamiento y de resistencia}\\
+
+Es muy importante saber medir la continuidad, de hecho es lo más importante
+para encontrar la mayoría de los problemas en los equipos eléctricos.
+equipos eléctricos.
+
+Gracias a esta medida, podemos comprobar que la mayoría de los elementos eléctricos y ciertos componentes electrónicos.\\
+
+Lo que llamamos "medir la continuidad" es comprobar que existe contacto eléctrico entre dos puntos.
+La continuidad equivale a una resistencia prácticamente nula ($\approx$0$\Omega$).
+
+En particular, se utiliza para comprobar que un cable no se ha cortado dentro de su aislamiento, lo que ocurre más a menudo de lo que se cree.
+aislamiento, lo que ocurre más a menudo de lo que se piensa.
+
+A la inversa, lo que llamamos "medir el aislamiento" es comprobar que
+que no hay contacto entre dos puntos, es decir, que hay una resistencia "infinita".\\
+
+\textbf{
+Para medir la continuidad eléctrica o la resistencia, el aparato debe
+estar siempre apagado}\\
+
+El multímetro envía una corriente baja para realizar la medición.
+Por lo tanto, esta medición es segura. Para comprobar la continuidad entre dos puntos, coloque el multímetro en el valor $\Omega$ más bajo o {\Large \loudspeaker}  si su multímetro dispone de la función "pitar para continuidad" (que le permite comprobar varias continuidades sin tener que mirar la pantalla cada vez).
+Coloque sus dos puntas en los dos extremos a comprobar: si la continuidad es
+Si la continuidad es buena, obtendrá un valor próximo a 00 y/o emitirá un pitido. Si no hay continuidad (resistencia demasiado alta), no cambiará nada en la pantalla. Mostrará OL (sobre límite) o "1" según el aparato.
+Para comprobar la diferencia en pantalla entre continuidad y no continuidad, simplemente junte las dos puntas de su multímetro.Tenga en cuenta los diferentes prefijos: miliohm, ohm, Kohm, Mohm.\\
+
+A veces será necesario comprobar una resistencia infinita.
+(Por ejemplo, entre las clavijas que alimentan un elemento eléctrico y su carcasa metálica, debe haber una resistencia infinita).
+Debe hacer lo mismo que para medir la continuidad, excepto que debe ajustar el multímetro al valor $\Omega$ más alto. No ajuste el multímetro a la función "continuidad" para esta medición.
+El aislamiento se produce cuando no ocurre nada en la pantalla durante la medición.
+\newpage
+
+Para medir una resistencia eléctrica, sitúese sobre $\Omega$ y coloque las puntas en las extremidades de la resistencia, si obtiene una resistencia infinita, está cortada y necesita ser reemplazada.
+Si obtiene 0 $\Omega$, puede estar en cortocircuito, así que desuelde/desenchufe la resistencia del resto del resto del aparato y mida de nuevo sus terminales para comprobar que está en cortocircuito. Si no es así, el problema está en otra parte del aparato: otra resistencia conectada en paralelo, por ejemplo.\\
+
+\textbf{
+c) Medida de la tensión}\\
+Aparte de las señales electrónicas más complejas (cuadrada, triangular, modulada....), en las que no entraré en esta guía, hay dos formas de tensión que debes conocer: la tensión continua y la tensión alterna "sinusoidal" de la red eléctrica doméstica.
+
+\begin{itemize}
+\item La tensión contínua
+
+\begin{normalize}
+Una tensión continua es una tensión estable en el tiempo y que tiene una forma lineal
+una pila de 9V (si no tenemos en cuenta que se descarga gradualmente) siempre entregará 9V. 
+Para medir una tensión de este tipo, pon tu multímetro en tensión continua
+(CC o V=). Si hay varios calibradores (algunos multímetros tienen calibración automática
+calibración automática) y no sabe lo que va a obtener, elija el mayor; si obtiene algo como 0,001V, reduzca el calibre hasta que obtenga un valor bastante exacto.
+A continuación, simplemente coloque cada una de las puntas de su multímetro sobre los dos contactos a medir, el + y el - de una pila, por ejemplo.
+Si las patillas de su multímetro están invertidas, mostrará un "-" delante del
+del valor.
+\end{normalize}
+\end{itemize}
 \end{document}
