@@ -1,20 +1,29 @@
+% Book general formatting, may need to adjust for printing
 \documentclass[a5paper,twoside,openany]{book}
 \usepackage[body={12cm,18cm}]{geometry}
 \usepackage[a5,center,off]{crop}
+\pagestyle{plain} % Remove chapter reminders on headers (book style)
+% End book formatting
+
 \usepackage{titlesec}
+\usepackage{bbding}
 \usepackage{amssymb,graphicx}
 \usepackage{enumitem}
 \usepackage{caption}
-\pagestyle{plain}
-\usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{lipsum}
 \usepackage{kantlipsum}
-\usepackage{enumitem}
 
-\graphicspath{ {./images/} }
+\usepackage{hyperref}	% Makes table of contents clickable on the pdf, really unnecesary
+\hypersetup{ 			% Makes table of contents clickable on the pdf
+    colorlinks,
+    allcolors=black,
+}
+
+\graphicspath{ {./images/} } % Set the path for the images
 
 
+% NORMALIZE: Custom command to get "out of" a bullet list, to add normal paragraphs
 \newcommand\vcent[1]{\vcenter{\hbox{#1}}}
 \newenvironment{normalize}{\leftskip-\leftmargin}{\par}
 \newcommand\loudspeaker[1][3]{\ensuremath{\vcent{\rule{.6ex}{.6ex}}\kern-.5ex%
@@ -23,13 +32,14 @@
   \vcent{\scalebox{.4}{)}}\ifnum#1>2\relax\kern-.23ex\vcent{\scalebox{.5}{)}}%
   \fi\fi\fi}%
 }
+% END NORMALIZE
 
 \begin{document}
 
 
-\setlength\parindent{0pt}
+\setlength\parindent{0pt} % Remove the space after paragraph titles, excessive by default
 
-\titleformat{\chapter}[block]
+\titleformat{\chapter}[block] % Remove the "CHAPTER" descriptor, add number to title
   {\normalfont\huge\bfseries\centering} % Format for chapter title: huge font, bold
   {\thechapter} % Include the chapter number (e.g., "1")
   {1em} % Spacing between the chapter number and the title
@@ -42,7 +52,7 @@
 \renewcommand{\contentsname}{\small Sumario}
 \renewcommand{\chaptername}{\small Capítulo}
 
-% Title Page (optional)
+% Title Page (optional, change later and put a real title page, with pictures and raccoons)
 \title{%
 	Guía para aprender a reparar tus propios aparatos electrodomésticos y electrónicos\\
 	\small (¡incluso si nunca has cogido un destornillador!)
@@ -65,8 +75,7 @@
 \chapter{Introducción}
 \section{Presentación de L'ateliéphémère}
 
-L'ateliéphémère es una asociación que ofrece talleres (así como cursos de formación sobre
-sobre temas específicos) para ayudarte a aprender a reparar tus propios
+L'ateliéphémère es una asociación que ofrece talleres (así como cursos de formación sobre temas específicos) para ayudarte a aprender a reparar tus propios
 equipos eléctricos y electrónicos, electrodomésticos, etc.\\
 
 \textbf{\underline{¿Cómo funciona?}}
@@ -146,10 +155,8 @@ En los documentales de Cosima Dannoritzer "Prêt à jeter" y "La tragedia", nos 
 La mayor parte es quemada por niños en enormes vertederos al aire libre para recuperar los
 recuperar metales raros.
 
-\textit{"Se calcula que, en el mundo desarrollado, alrededor del 75\% de estos residuos desaparece de los circuitos oficiales de reprocesamiento.
-desaparece de los circuitos oficiales de reprocesamiento. Gran parte se exporta
-ilegalmente, a vertederos clandestinos en África".
-}
+\textit{"Se calcula que, en el mundo desarrollado, alrededor del 75\% de estos residuos desaparece de los circuitos oficiales de reprocesamiento. Gran parte se exporta ilegalmente, a vertederos clandestinos en África".
+}\\
 (http://greenfocusmag.com/ verite-e-waste-monde-afrique)
 
 Por su composición, la electrónica es en cualquier caso muy complicada de reciclar.
@@ -227,13 +234,13 @@ Es más, algunos modelos recientes de modelos de impresora-escáner: no podrás 
     \centering
     \begin{minipage}[b]{0.4\textwidth}
         \centering
-        \includegraphics[width=1cm]{braum-mixer} 
+        \includegraphics[width=0.3\textwidth]{braum-mixer} 
         \caption*{Ganador del concurso de batidoras indesmontables... Braum y Kenwood!}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.4\textwidth}
         \centering
-        \includegraphics[width=2cm]{Dyson} 
+        \includegraphics[width=\textwidth]{Dyson} 
         \caption*{¿Es para aspirar polvo intergaláctico?}
     \end{minipage}
 \end{figure}
@@ -618,7 +625,443 @@ Sin embargo, la tensión en los bornes de cada lámpara es la misma que la de la
 \end{itemize}
 Es importante entender la diferencia entre estas dos asociaciones de elementos (o componentes electrónicos) porque no se comprobarán estos elementos de la misma manera en ambos casos.
 Por ejemplo, en conexión en paralelo, si mide un cortocircuito en los terminales de L1, quizás sea L2 y no L1 el que tenga la culpa. Deberá desconectar una de estas lámparas para comprobarlo.
+\newpage
+
+\chapter{Pasemos a la práctica}
+En primer lugar, en lo que respecta a los equipos electrónicos, existe un documento técnico muy valioso para cada aparato: el manual de servicio.
+Si tiene la suerte de encontrarlo en Internet (a veces gratis), le dará mucha información que le ayudará a entender su máquina.
+La mayoría de las veces, le proporcionará: el esquema electrónico, el despiece
+para facilitar el desmontaje, el valor de los componentes y sus números de pieza
+los ajustes, los "códigos de error" y la información para entrar en el modo de diagnóstico, etc.
+
+\section{Herramientas}
+Esta es la lista de herramientas que utilizo en mis talleres:
+
+{\large \textbf{a) Indispensables:}}
+\begin{itemize}[label=\CheckmarkBold]
+\setlength\itemsep{0em} % Reduce Vspace to make the list fit in the page
+\item Destornilladores de todas las formas y tamaños, incluidos destornilladores planos y Phillips, así como tornillos TORX, que suelen utilizarse en electrodomésticos. 
+\item Alicates: multiusos, de punta larga, de corte, de nariz de bruselas, etc. 
+\item Llaves: planas, de vaso, ajustables... 
+\item Un cúter 
+\item Un multímetro, lo más básico posible, suele ser suficiente.
+\item Un soldador, si crees que vas a soldar con regularidad, puedes permitirte pagar el precio y comprar calidad. Elige una punta de aproximadamente 1 mm de diámetro. 
+\item Una esponja o lana de acero para limpiar la punta del soldador.
+\item Una bomba desoldadora para aspirar la soldadura.
+\item Una lupa
+\item Una pera de aire para quitar el polvo (no te salpiques con botes de aire seco).
+\item Un cuchillo para ostras: la mejor herramienta que he encontrado para desmontar aparatos con carcasas de plástico enganchadas. Te ahorrará la molestia de destrozar muchos destornilladores planos.
+\item Un cable con un enchufe macho en un extremo (con toma de tierra) conectado a 3 conectores hembra "SPADE" en el otro extremo.\\
+\end{itemize}
+
+Este cable te será muy útil para conectar directamente aparatos electrodomésticos, puedes modificar un enchufe de algún aparato y soldar los conectores tú mismo.
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{spade-female} 
+        \caption*{Conector tipo "SPADE" hembra}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{torx-symbol} 
+        \caption*{Tornillo Torx}
+    \end{minipage}
+\end{figure}
+
+\vspace{1em}
+{\large \textbf{b) Opcionales:}}
+\begin{itemize}[label=\CheckmarkBold]
+\setlength\itemsep{0em} % Reduce Vspace to make the list fit in the page
+\item Una pistola de aire caliente, muy útil para reblandecer pegamentos, detectar fallos que se manifiestan cuando el aparato se sobre calienta, y para aplicar termoretráctil.
+\item Una "tercera mano": brazos articulados con npinzas, y a veces una lupa, para soldar cómodamente.
+\item Un tester de componentes electrónicos, se encuentran por 15€ en internet.
+\item Un magnetizador/desmagnetizador de destornilladores, no son caros y permiten recuperar tornillos difícilmente accesibles...
+\item Limas pequeñitas.
+\item Pistola de cola caliente.
+\item Pelacables.
+\item Bomba de aire frío para detectar fallos que aparecen en función de la temperatura.
+\item Una regleta con interruptor para apagar rápidamente aparatos "dudosos".
+\end{itemize}
+\newpage
+
+{\large \textbf{c) Consumibles:}}
+\begin{itemize}[label=\CheckmarkBold]
+\setlength\itemsep{0em}
+\item Varios tipos de pegamento (super glue, epoxy, etc.)
+\item Trenza desoldadora.
+\item Alambre de estaño de 0,5 y 1mm de diámetro.
+\item Grasa.
+\item Aceite de vaselina.
+\item Alcohol de 90° o isopropílico (para la óptica).
+\item Pegamento de "contacto" F2.
+\item Lubricante anti-oxidante.
+\item Tubo termorretráctil de varios diámetros.
+\item Flux de soldadura.
+\end{itemize}
+
+\section{El desmontaje: el inicio de la lucha...}
+En los electrodomésticos recientes, el desmontaje suele ser una etapa tan difícil como la propia reparación, a veces incluso más. Fabricantes, ingenieros y diseñadores innovan año tras año para asegurarse de que no podamos desmontar sus (¿nuestros?) aparatos.
+Utilizar tornillos ocultos bajo las etiquetas, bajo las patas de goma o bajo las piezas de plástico clipadas a veces puede hacernos perder mucho tiempo. También encontrarás tornillos "de seguridad", comprar el destornillador para quitarlos puede valer una fortuna...
+A veces, la ausencia de un tornillo significa que tendrás que buscar mucho tiempo para encontrar el lugar adecuado para abrir el aparato sin romperlo.
+Y por último, los aparatos moldeados y pegados a veces obligan a utilizar un cúter a lo largo de una ranura para acceder al interior... (batidoras de inmersión Braun y Kenwood, cargadores Apple...) Sólo la perseverancia (y la ayuda de internet) harán que no te rindas antes de empezar...
+
+Tómate tu tiempo para mirar las cosas, para intentar separar cada parte de las demás, para "sentir" cada parte. Intenta "sentir" qué se mueve y qué no se mueve en absoluto, para deducir si hay algún tornillo que no hayas encontrado.
+
+\begin{figure}[h]
+\includegraphics[width=0.2\textwidth]{tornillo-tostadora-phillips} 
+\centering
+\caption*{\textit{Tornillo extraño encontrado en tostadoras phillips}}
+\end{figure}
+
+Cuando se trata de destornilladores de diferentes formas y tamaños, puedes encontrar casi cualquier cosa en ifixit.com, pero una vez más, el precio de la herramienta comparado con el del aparato a reparar detendrá a mucha gente en su camino. Sólo la puesta en común de herramientas puede resolver este problema.\\
+
+{\large \textbf{a) Cómo desatornillar:}}\\
+
+La mayoría de la gente cree saber cómo desenroscar, sin embargo no es raro encontrar casos de gente que lo realizan de mala manera, lo que a veces es destructor para la cabeza del tornillo, y vuelve el desmontaje del aparato imposible sin un taladro de columna para hacer desaparecer la cabeza del tornillo con una broca, cosa que no todo el mundo tiene a su alcance...
+Aquí hay un método para evitar esta situación:
+
+\begin{itemize}
+\item Elige la herramienta adecuada: fíjate bien en la forma del tornillo
+coge un destornillador con la broca que te parezca más adecuada, colócalo en el tornillo y comprueba que no hay holgura entre la punta y el tornillo.
+La punta debe acoplarse perfectamente al tornillo, casi no se debe ver holgura.
+\item A continuación, aconsejo mantener un buen apoyo vertical sobre el tornillo y dar un pequeño golpe seco de rotación, en el sentido inverso de las agujas del reloj (excepto en casos raros: rotnillo sobre el eje de un motor, en algunas piezas de bici, máquinas de coser...)
+De esta manera evitaremos al máximo que el destornillador "salte" sobre el tornillo y deteriore la cabeza, haciendo su extracción cada vez más difícil.
+\end{itemize}
+\begin{figure}[h]
+\includegraphics[width=0.4\textwidth]{diagrama-righty-tighty} 
+\centering
+\caption*{\textit{Righty tighty, lefty loosey ;)}}
+\end{figure}
+
+{\large \textbf{b) Los conectores:}}\\
+Cuando desmontes u aparato, a menudo deberás desconectar placas electrónicas conectadas entre ellas, o conectadas por algún tipo de cable con conectores. A veces es suficiente estirar (a veces incluso con bastante fuerza), pero debes tener cuidado con ciertos conectores. Mira bien si no hay algún mecanismo de cerrojo como para los modelos encontrados abajo. A menudo, el clip de desconexión es de un color distinto al resto del conector.
+
+\begin{itemize}
 
 
+\begin{figure}[h]
+\includegraphics[width=0.4\textwidth]{conector-deslizante} 
+\centering
+\caption*{\textit{Modelo de conector deslizante}}
+\end{figure}
+\item Modelo deslizante: hay que tirar ligeramente hacia el exterior del mecanismo para desconectar el cable.
+\begin{figure}[h]
+\includegraphics[width=0.4\textwidth]{conector-basculante} 
+\centering
+\caption*{\textit{Modelo de conector basculante}}
+\end{figure}
+\item Modelo basculante: hay que levantar delicadamente la parte superior del mecanismo, a veces del lado del cable, menos frecuentemente, como en la foto, del lado opuesto.
+\end{itemize}
+
+En ambos casos, usa las uñas o un destornillador plano muy fino y tira con cuidado, cuando se rompe un conector de este tipo suele ser bastante difícil de remplazar.
+\newpage
+
+\section{Historial y origen del problema}
+
+Es muy importante enterarse del historial de un fallo para deducir de donde puede (o no) venir.\\
+
+{\large \textbf{a) El aparato se ha caído o ha recibido un golpe}}\\
+
+Si es así, es muy probable que algo se haya roto en el interior y esté causando una avería,
+causando un mal funcionamiento: una placa de circuito rota o agrietada, un conector, un cable o una soldadura arrancados, un trozo de plástico roto...
+El problema suele ser visible, sólo tienes que mirar con atención.
+Con la práctica, serás capaz de ver enseguida qué falla.\\
+
+{\large \textbf{b) El problema empeora cada día}}\\
+
+Si la avería se ha producido gradualmente, hay que pensar en algo que evoluciona con el tiempo, acumulación de polvo, componentes al final de su vida útil, etc.
+Según el tipo de electrodoméstico y avería, debe dar prioridad a la revisión de las partes que necesitan una limpieza regular:
+
+\begin{itemize}
+
+\item Los elementos ópticos: bloque lector de un CD/DVD
+\item Los elementos y componentes que se calientan, y aquellos que los enfrían: disipadores y ventiladores de un ordenador portátil
+\item Las partes mecánicas: barqueta de un lector CD/DVD, correas, engranajes...
+\item Los contacos eléctricos: muelles de contacto de las pilas, interruptores, escobillas del motor...
+\end{itemize}
+
+{\large \textbf{c) El fallo aparece después de la puesta en marcha}}\\
+
+En este caso, se trata probablemente de un elemento o componente electrónico cuyo estado cambia en función de su temperatura, por ejemplo
+una unión soldada (porque el metal se dilata con la temperatura).
+
+Puede tratarse de un componente mecánico cuya lubricación (demasiado antigua) mejora volviéndose más fina al aumentar la temperatura.
+
+O al contrario, un componente eléctrico que funciona mal en cuanto sube la
+temperatura.\\
+\newpage
+{\large \textbf{d) Problema intermitente}}\\
+
+Si el problema aparece y desaparece sin ninguna razón en particular, o aparece cuando mueves el aparato, probablemente se trate de un mal contacto de una unión soldada o un conector.\\
+
+{\large \textbf{e) El problema aparece en funciones específicas}}\\
+
+Si el aparato se enciende, entiende comprender qué es lo que funciona y lo que no, ayudará mucho al diagnóstico que sigue.
+Por ejemplo, prueba varios programas de la lavadora, si no deja elegir la función de centrifugado o vaciado de forma independiente a un programa, intenta ver si estas funciones pueden ser parte del problema (fallo de la bomba, fallo del elemento calentador ...)
+A veces existen programas de diagnóstico, sobre todo en lavadoras y lavavajillas.
+\newpage
+
+\chapter{Electrodomésticos}
+A continuación presentaré los principales componentes que se encuentran en los aparatos eléctricos y electrodomésticos.
+
+\section{Los interruptores}
+{\large \textbf{a) Interruptores, inversores y pulsadores}}\\
+
+\noindent\begin{minipage}[t]{0.35\textwidth}\vspace{0pt}
+
+El interruptor más básico es un sistema para cerrar y abrir un
+circuito eléctrico, ya sea a tensión de red u otra señal eléctrica.
+Su límite será la corriente que puede pasar a través de ellos sin
+dañarlos.\\
+
+\begin{flushleft}
+Hay interruptores dobles que permiten abrir y cerrar dos circuitos
+en paralelo y una variante conocida como conmutador que permite conectar un pin común a
+cualquiera de sus otras dos patillas. Existen más complejos: triple,
+cuádruple, etc. Pero el principio sigue siendo el mismo
+\end{flushleft}
+\end{minipage}% Don't leave empty lines and empty chars between minipages
+\hfill%
+\begin{minipage}[t]{0.6\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{tipos-interruptores}
+\end{minipage}
+\vspace{1em}
+
+Se comprueban simplemente con el multímetro en modo continuidad y aislamiento
+(véase el capítulo 2.4.b).
+\newpage
+
+Otro tipo de interruptor que se encuentra generalmente soldado en placas electrónicas es el "botón pulsador", su particularidad es que sólo cierra el circuito mientras está pulsado, y lo abre al soltarse.
+Existen de 2 y de 4 patillas, como en la foto, sin embargo las patillas están conectadas internamente 2 a 2 de cada lado y sólo es capaz de conmutar 1 circuito.
+
+\begin{figure}[h]
+\includegraphics[width=0.25\linewidth]{boton-pulsador}
+\centering
+\end{figure}
+
+Se encuentran encontrará detrás de cada botón de un equipo de alta fidelidad, reproductor de CD/DVD, ordenador portátil (aparte del teclado), pantalla, etc,
+El popular modelo de arriba hace un pequeño "clic" al pulsarlo.\\
+
+\textbf{Fallos comunes:}
+\begin{itemize}
+\item Mal contacto eléctrico interno, que provoca una alimentación intermitente o chispazos (en pulsadores no):
+\\
+
+$\blacktriangleright$ Si puedes desmontar la pieza (es el caso sobre todo de los interruptores como el anterior), intenta comprender qué partes que partes necesitan hacer contacto. En los interruptores que controlan la tensión de red, suele ocurrir que en el punto preciso
+donde se hace el contacto, el metal está ennegrecido e impide un buen contacto eléctrico.
+En este caso, a menudo basta con limpiar con una pequeña lima o papel de lija para restablecer un buen contacto eléctrico, seguido de una limpieza con alcohol de 90° o spray "limpia contacto".
+\\
+
+En el caso de los interruptores pequeños o pulsadores que no se pueden desmontar, echar limpiacontactos puede ser suficiente para darles una nueva vida. Si no, han de ser reemplazados, suelen ser muy baratos.
+
+\item Ausencia de contacto
+\\
+
+$\blacktriangleright$ Si puede desmontarse, comprueba que no se ha movido ninguna pieza del interior.
+A menudo habrá que sustituir toda la pieza.
+\\
+\end{itemize}
+\newpage
+
+\textbf{b) Un interruptor particular: el temporizador}
+
+\noindent\begin{minipage}[t]{0.5\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{temporizador}
+\end{minipage}
+\hfill%
+\begin{minipage}[t]{0.4\textwidth}\vspace{\fill}
+\vspace{\fill} % Add this to push the text down
+Es un interruptor, excepto que se utiliza para cerrar el circuito,
+que se abrirá de nuevo cuando haya transcurrido el tiempo deseado.
+Se prueba como un interruptor simple.
+\vspace{\fill} % Add this to push the text down
+\end{minipage}
+\vspace{1em}
+
+\section{Sensores}
+
+Un sensor es un elemento que recibe y transmite una información: posición de un elemento (por diferentes métodos: mecánica, óptica, magnética...), movimiento, temperatura, presión...
+
+Transmite esta información de forma eléctrica (interruptor abierto/cerrado, resistencia variable).
+
+Algunos sirven directamente para cotar la alimentación eléctrica.
+Otros, como el sensor de efecto hall, requieren otros componentes electrónicos para ser interpretados.\\
+
+\begin{center}
+\textbf{a) Sensores de posición mecánica}
+\end{center}
+\begin{minipage}[h]{\textwidth}\vspace{0pt}
+\includegraphics[width=0.6\linewidth]{sensores-posicion-mecanica}
+\centering
+\end{minipage}
+
+Se encuentran en muchos aparatos, pueden servir para verificar si una puerta está bien cerrada (horno microondas) o la presencia de una tapa/recipiente (batidora, blender)
+\newpage
+
+A menudo están cableados en serie (véase cap. 2.4.4) con la alimentación del elemento potencialmente peligroso (motor que hace girar las cuchillas, etc.).
+Es una fuente de averías muy frecuente. Suele tener 2 ó 3 clavijas:
+
+\begin{itemize}
+\item 2 patillas, es un interruptor clásico, verifica que esté en modo abierto (sin continuidad) en la posición "OFF" y en posición cerrada (con continuidad) en la posición "ON".
+\item 3 patillas, es un conmutador. Tiene 3 patillas llamadas Reposo, Trabajo y Común.
+\end{itemize}
+
+
+\noindent\begin{minipage}[t]{0.35\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{conmutador}
+\end{minipage}
+\hfill%
+\begin{minipage}[t]{0.6\textwidth}\vspace{\fill}
+\vspace{\fill} % Add this to push the text down
+Cuando está en posición de reposo (obligado por un muelle, cuando no hay presión): Hay contacto entre la patilla C y R, y no hay contacto entre la T y las 2 otras.\\
+\vspace{\fill} % Add this to push the text down
+\end{minipage}
+\vspace{1em}
+
+Cuando está en posición de trabajo, C y T están en contacto y no hay contacto entre R y las otras 2.
+
+A menudo hay que deducir a qué corresponde cada patilla, ya que no siempre están etiquetadas. Verifica bien que no haya ningún cortocircuito indeseado, ni ningún circuito abierto indeseado según la posición, y que los estados conmutan al accionar el conmutador.
+
+\begin{center}
+\textbf{b) Sensores de temperatura}
+\end{center}
+
+\begin{itemize}
+
+\item El termostato mecánico regulable
+
+\noindent\begin{minipage}[t]{0.45\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{termostato}
+\end{minipage}
+\hfill%
+\begin{minipage}[t]{0.5\textwidth}\vspace{\fill}
+\vspace{\fill}
+No es ni más ni menos que un interruptor
+que se abre y se cierra en función de la
+temperatura deseada.
+
+Se trata de una función muy común en
+electrodomésticos: hornos, planchas, calentadores eléctricos
+plancha, calentador eléctrico, placa
+hornillos, etc.
+
+Se comprueba del mismo modo que un interruptor.
+Oirá un pequeño "clic" cuando se enciende el termostato. Este chasquido suele significar que está funcionando correctamente.\\
+\vspace{\fill}
+\end{minipage}
+\vspace{1em}
+\\
+
+\item El klixon
+
+\begin{normalize}
+\begin{minipage}[h]{\textwidth}\vspace{0pt}
+\includegraphics[width=0.3\linewidth]{klixon}
+\centering
+\end{minipage}
+
+Se trata de un seguro térmico. 
+Se encuentra por ejemplo en lavadoras, en el interior de la cuba.
+Cuando la temperatura sobrepasa cierto límite, se abre y corta la corriente.
+Cuando es rearmable, suele tener un botón que permite volver a conectarlo (hasta la próxima vez que se exceda la temperatura)
+
+Cuando ocurre un sobrecalentamiento suele ser por un fallo del termostato, que no ha regulado bien la temperatura del aparato y ha provocado un sobrecalentamiento.
+El klixon se testea con el modo continuidad.
+\end{normalize}
+
+\item La sonda térmica
+
+\begin{normalize}
+\begin{minipage}[h]{\textwidth}\vspace{0pt}
+\includegraphics[width=0.3\linewidth]{sonda-termica}
+\centering
+\end{minipage}
+
+Es una resistencia variable por temperatura, según el modelo, su resistencia aumentará o disminuirá con la temperatura.
+Se encuentran en diferentes formas en una gran variedad de electrodomésticos.
+El modelo de la foto se encuentra en algunas lavadoras.
+\\
+
+Está conectado principalmente a una tarjeta electrónica que controla la
+temperatura.
+
+En general, si se obtiene un valor de resistencia que no sea ni cortocircuito ni infinito, hay muchas posibilidades de que el sensor esté en buen estado.
+En el caso de sensores en contacto con el agua, como éste, la cal adherida al sensor 
+puede ser responsable de un problema de regulación de la temperatura.
+En este caso, basta con limpiarlo con vinagre blanco.
+\end{normalize}
+
+\end{itemize}
+\newpage
+\begin{center}
+\textbf{c) Sensores de posición por campo magnético}
+\end{center}
+Se encuentran a menudo en electrodomésticos, para detectar la presencia de agua en un depósito (cafetera, plancha, ...) o captar la posición del tambor en una lavadora.\\
+
+
+Hay dos grandes familias:
+
+\begin{itemize}
+\item Los sensores "ILS", que funcionan como un interruptor abierto o cerrado según la presencia de un imán a proximidad.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{sensor-ILS}
+\caption*{\textit{Tipo "ILS": Sensor de posición del tambor de una lavadora}}
+\end{figure}
+
+\item Los sensores de "efecto hall", que hacen variar la tensión de sus contactos según la intensidad del campo magnético a proximidad.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{sensor-hall}
+\caption*{\textit{Tipo "efecto hall"}}
+\end{figure}
+
+\end{itemize}
+\newpage 
+
+\begin{center}
+\textbf{d) Sensores de presión (presostatos)}
+\end{center}
+Se pueden encontrar en lavadoras, generadores de vapor, lavadoras, máquinas expreso.... Constan de 1, 2 o incluso 3 conmutadores "común - reposo/trabajo" que conmutan en función de la presión que reciben.
+
+\noindent\begin{minipage}[t]{0.4\textwidth}\vspace{0pt}
+\includegraphics[width=\linewidth]{sensor-presion}
+Presostato de una lavadora
+\end{minipage}
+\hfill%
+\begin{minipage}[t]{0.5\textwidth}\vspace{\fill}
+\vspace{\fill}
+En el caso de los presostatos de las
+lavadoras, la presión es una imagen del nivel de
+nivel de agua en la máquina.
+Los nombres de las clavijas suelen ser
+así:
+\\
+
+Dígito de las decenas: nivel de agua (1 para
+$1^{er}$ nivel...)
+Dígito de las unidades: 1: común / 2 :
+resto / 3: trabajo\\
+\vspace{\fill}
+\end{minipage}
+\vspace{1em}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{esquema-presostato}
+\caption*{\textit{Esquema de un presostato}}
+\end{figure}
+
+\textbf{Funcionamiento:\\}
+En reposo, el muelle "6" hace contacto entre "11" y "12".
+el aire comprimido por el agua del depósito llega a "2", presiona sobre la membrana
+membrana "3" y después sobre la aguja "4".
+El efecto de esta presión es forzar a la lengüeta "9", conectada a "11", a 
+desconectarse de "12" y conectarse a "13".
 
 \end{document}
