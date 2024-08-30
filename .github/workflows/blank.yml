@@ -15,15 +15,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  latex-job:
+  build_latex:
     runs-on: ubuntu-latest
-    name: A job to Compile Latex file
     steps:
-    - uses: actions/checkout@v1
-    - name: Compilation
-      uses: vinay0410/tectonic-action@master
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tex_path: 'guia-reparar.tex'
-        push: 'yes'
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      
+      - name: Compile LaTeX document
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: guia-reparar.tex
+      
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: guia-reparar-pdf
+          path: guia-reparar.pdf
